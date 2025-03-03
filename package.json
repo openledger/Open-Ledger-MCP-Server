@@ -1,7 +1,7 @@
 {
   "name": "open-ledger-mcp-server",
   "version": "1.0.0",
-  "description": "Model Context Protocol server for OpenLedger API",
+  "description": "Model Context Protocol server for OpenLedger API (https://openledger.com) - an embedded accounting API that consolidates your customer's financial data into your platform and can entirely manage a ledger through an API, perfect for AI agents",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
@@ -14,7 +14,9 @@
     "mcp",
     "openledger",
     "api",
-    "model-context-protocol"
+    "model-context-protocol",
+    "financial-data",
+    "accounting"
   ],
   "author": "",
   "license": "ISC",

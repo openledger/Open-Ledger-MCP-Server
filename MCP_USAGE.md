@@ -2,9 +2,13 @@
 
 This guide explains how to use the OpenLedger MCP Server with Claude or other AI assistants that support the Model Context Protocol (MCP).
 
+## What is OpenLedger?
+
+[OpenLedger](https://openledger.com) is an embedded accounting API that consolidates your customer's financial data into your platform, creating one single source of truth. It can also be used to entirely manage a ledger through an API, making it perfect for AI agents. This MCP server allows AI assistants like Claude to interact with the OpenLedger API in a structured way.
+
 ## What is MCP?
 
-The Model Context Protocol (MCP) is a standard developed by Anthropic that allows AI models like Claude to securely access external tools and data sources. With MCP, Claude can interact with your financial data through the OpenLedger API in a structured way.
+The Model Context Protocol (MCP) is a standard developed by Anthropic that allows AI models like Claude to securely access external tools and data sources. With MCP, Claude can interact with your financial data through the [OpenLedger API](https://openledger.com/api) in a structured way.
 
 ## Setting Up Claude with OpenLedger MCP Server
 

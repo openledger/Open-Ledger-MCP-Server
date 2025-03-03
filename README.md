@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server implementation for the OpenLedger API. This server provides structured context to AI models according to the MCP specification.
 
+## What is OpenLedger?
+
+[OpenLedger](https://openledger.com) is an embedded accounting API that consolidates your customer's financial data into your platform, creating one single source of truth. It can also be used to entirely manage a ledger through an API, making it perfect for AI agents. This MCP server allows AI assistants like Claude to interact with the OpenLedger API in a structured way.
+
 ## What is MCP?
 
 The Model Context Protocol (MCP) is a standard for providing context to AI models. It allows for structured data exchange between applications and AI models, enabling more effective and contextual AI interactions.
@@ -11,7 +15,7 @@ Learn more at [modelcontextprotocol.io](https://modelcontextprotocol.io).
 ## Features
 
 - MCP-compliant server implementation
-- Integration with OpenLedger API
+- Integration with [OpenLedger API](https://openledger.com/api)
 - Context-aware AI interactions for financial data
 - Support for transactions, companies, and other financial entities
 
