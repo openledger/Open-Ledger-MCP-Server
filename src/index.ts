@@ -34,8 +34,10 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Routes
+// MCP Routes - The main MCP endpoint
 app.use('/mcp', mcpRoutes);
+
+// OpenLedger API Routes - These are separate from MCP
 app.use('/api', openLedgerRoutes);
 
 // Error handling middleware
@@ -53,7 +55,10 @@ app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
 
 // Start server
 app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+  logger.info(`OpenLedger MCP Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+  logger.info(`MCP endpoint available at http://localhost:${PORT}/mcp`);
+  logger.info(`API endpoint available at http://localhost:${PORT}/api`);
+  logger.info(`Health check available at http://localhost:${PORT}/health`);
 });
 
 // Handle unhandled promise rejections

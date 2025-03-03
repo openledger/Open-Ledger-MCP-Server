@@ -15,7 +15,7 @@ Learn more at [modelcontextprotocol.io](https://modelcontextprotocol.io).
 - Context-aware AI interactions for financial data
 - Support for transactions, companies, and other financial entities
 
-## Installation
+## Quick Start
 
 ### Option 1: Local Installation
 
@@ -49,6 +49,31 @@ docker-compose up --build
 ./docker-run.sh
 ```
 
+## Using with Claude
+
+To use this MCP server with Claude, add it to your Claude configuration:
+
+```json
+{
+  "mcpServers": {
+    "openledger": {
+      "url": "http://localhost:8080/mcp"
+    }
+  }
+}
+```
+
+See [MCP_USAGE.md](MCP_USAGE.md) for detailed instructions on how to use this server with Claude or other AI assistants that support the Model Context Protocol.
+
+## Available Resources
+
+The OpenLedger MCP Server provides access to the following resources:
+
+1. **openledger://transactions** - Access and manage financial transactions
+2. **openledger://companies** - Access and manage company information
+3. **openledger://categories** - Access and manage transaction categories
+4. **openledger://reports** - Generate financial reports
+
 ## Development
 
 ```bash
@@ -62,22 +87,24 @@ bun test
 bun run build
 ```
 
-## Using with Claude
+## Project Structure
 
-See [MCP_USAGE.md](MCP_USAGE.md) for detailed instructions on how to use this server with Claude or other AI assistants that support the Model Context Protocol.
-
-## API Documentation
-
-The server implements the OpenLedger API as specified in the OpenAPI documentation. Key endpoints include:
-
-- Transaction management
-- Company management
-- Financial reporting
-- AI-assisted categorization
-
-## MCP Implementation
-
-This server implements the Model Context Protocol to provide structured context to AI models. The implementation follows the specification at [modelcontextprotocol.io/examples](https://modelcontextprotocol.io/examples).
+```
+.
+├── src/
+│   ├── controllers/       # Request handlers
+│   ├── routes/            # API routes
+│   ├── utils/             # Utility functions
+│   └── index.ts           # Main application entry point
+├── .env.example           # Example environment variables
+├── docker-compose.yml     # Docker Compose configuration
+├── Dockerfile             # Docker configuration
+├── MCP_USAGE.md           # Guide for using with Claude
+├── package.json           # Project dependencies
+├── README.md              # This file
+├── run.sh                 # Script to run locally
+└── tsconfig.json          # TypeScript configuration
+```
 
 ## Scripts
 

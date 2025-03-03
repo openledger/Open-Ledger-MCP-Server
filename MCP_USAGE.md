@@ -36,7 +36,32 @@ The server will run on port 8080 by default (or the port specified in your .env 
 
 To use the OpenLedger MCP Server with Claude, you need to add it to your Claude configuration:
 
-#### For Local Installation
+#### For Claude Desktop or API
+
+```json
+{
+  "mcpServers": {
+    "openledger": {
+      "url": "http://localhost:8080/mcp"
+    }
+  }
+}
+```
+
+#### For Claude in Anthropic Console
+
+In the Anthropic Console, you can configure the MCP server by adding it to your model settings:
+
+1. Go to the Anthropic Console
+2. Select "Claude" and configure a new conversation
+3. Click on "Add Tool" and select "MCP Server"
+4. Enter the URL: `http://localhost:8080/mcp`
+5. Name it "OpenLedger"
+6. Click "Add"
+
+#### For Local Development with Claude
+
+If you're developing locally and want Claude to start the server for you:
 
 ```json
 {
@@ -45,30 +70,6 @@ To use the OpenLedger MCP Server with Claude, you need to add it to your Claude 
       "command": "bun",
       "args": ["run", "src/index.ts"],
       "cwd": "/path/to/Open-Ledger-MCP-Server"
-    }
-  }
-}
-```
-
-#### For Docker Installation
-
-```json
-{
-  "mcpServers": {
-    "openledger": {
-      "url": "http://localhost:8080/mcp"
-    }
-  }
-}
-```
-
-Alternatively, if you're using Claude Desktop or another client that supports MCP, you can point it to the running server:
-
-```json
-{
-  "mcpServers": {
-    "openledger": {
-      "url": "http://localhost:8080/mcp"
     }
   }
 }
@@ -90,11 +91,60 @@ Claude will use the MCP server to fetch data from the OpenLedger API and provide
 
 The OpenLedger MCP Server provides access to the following resources:
 
-1. **Transactions** - Access and manage financial transactions
-2. **Companies** - Access and manage company information
-3. **Categories** - Access and manage transaction categories
+1. **openledger://transactions** - Access and manage financial transactions
+2. **openledger://companies** - Access and manage company information
+3. **openledger://categories** - Access and manage transaction categories
+4. **openledger://reports** - Generate financial reports
 
 Each resource has various actions that Claude can perform, such as getting, creating, updating, and analyzing data.
+
+## Example Interactions
+
+### Viewing Transactions
+
+```
+User: Show me the recent transactions for company comp-123.
+
+Claude: I'll retrieve the recent transactions for company comp-123.
+
+[Claude uses the openledger://transactions resource with the getTransactions action]
+
+Here are the recent transactions for company comp-123:
+
+1. Transaction ID: tx1
+   Date: January 15, 2023
+   Amount: $1,000.00
+   Description: Client payment
+   Status: CLEARED
+
+2. Transaction ID: tx2
+   Date: January 20, 2023
+   Amount: -$250.00
+   Description: Office supplies
+   Status: CLEARED
+
+Total transactions: 2
+```
+
+### Creating a Transaction
+
+```
+User: Create a new transaction for $500 paid to Office Supplies Inc. for company comp-123.
+
+Claude: I'll create a new transaction for company comp-123.
+
+[Claude uses the openledger://transactions resource with the createTransaction action]
+
+I've created a new transaction:
+
+Transaction ID: tx-1234567890
+Amount: $500.00
+Description: Payment to Office Supplies Inc.
+Company ID: comp-123
+Created at: [current date and time]
+
+The transaction has been successfully recorded in the system.
+```
 
 ## Security Considerations
 
