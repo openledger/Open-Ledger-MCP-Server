@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  openledger-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openledger-mcp-server
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - NODE_ENV=development
+      - OPENLEDGER_API_URL=http://localhost:8081
+      - OPENLEDGER_API_KEY=dev_api_key
+      - MCP_VERSION=1.0.0
+      - MCP_MAX_CONTEXT_SIZE=100000
+      - LOG_LEVEL=debug
+      - JWT_SECRET=docker_development_secret
+      - JWT_EXPIRATION=1d
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped 
